@@ -58,7 +58,8 @@
                                     "test/resources/testproject/src"]
                    :repositories [["snapshots" "https://oss.sonatype.org/content/repositories/snapshots"]]}
              :cljfmt [:test
-                      {:plugins [[lein-cljfmt "0.6.4"]]
+                      {:plugins [[lein-cljfmt "lread-rewrite-cljc-test"
+                                  :exclusions [org.clojure/clojurescript]]]
                        :cljfmt {:indents {as-> [[:inner 0]]
                                           as->* [[:inner 0]]
                                           cond-> [[:inner 0]]
@@ -70,4 +71,6 @@
   :repositories [["public-github" {:url "git://github.com"}]]
   :git-down {rewrite-cljc {:coordinates lread/rewrite-cljc-playground}
              cljfmt {:coordinates lread/cljfmt
-                     :manifest-root "cljfmt"}})
+                     :manifest-root "cljfmt"}
+             lein-cljfmt {:coordinates lread/cljfmt
+                          :manifest-root "lein-cljfmt"}})
