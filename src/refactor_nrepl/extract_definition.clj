@@ -4,7 +4,7 @@
              [core :refer [suffix]]
              [s-expressions :as sexp]]
             [refactor-nrepl.find.find-symbol :refer [find-symbol]]
-            [rewrite-clj.zip :as zip])
+            [rewrite-cljc.zip :as zip])
   (:import [java.io PushbackReader StringReader]
            java.util.regex.Pattern))
 

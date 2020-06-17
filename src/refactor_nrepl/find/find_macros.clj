@@ -9,7 +9,7 @@
             [refactor-nrepl.ns
              [ns-parser :as ns-parser]
              [tracker :as tracker]]
-            [rewrite-clj.zip :as zip]
+            [rewrite-cljc.zip :as zip]
             [clojure.string :as str]
             [clojure.java.io :as io])
   (:import clojure.lang.LineNumberingPushbackReader

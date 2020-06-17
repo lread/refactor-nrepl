@@ -1,7 +1,7 @@
 (ns refactor-nrepl.s-expressions
-  (:require [rewrite-clj.parser :as zip-parser]
-            [rewrite-clj.reader :as zip-reader]
-            [rewrite-clj.zip :as zip]))
+  (:require [rewrite-cljc.parser :as zip-parser]
+            [rewrite-cljc.reader :as zip-reader]
+            [rewrite-cljc.zip :as zip]))
 
 (defn all-zlocs
   "Generate a seq of all zlocs in a depth-first manner"

@@ -10,17 +10,23 @@
                  ^:inline-dep [org.clojure/tools.namespace "0.3.1" :exclusions [org.clojure/tools.reader]]
                  ^:inline-dep [org.clojure/tools.reader "1.3.2"]
                  ^:inline-dep [cider/orchard "0.5.6"]
-                 ^:inline-dep [cljfmt "0.6.4"]
+                 ^:inline-dep [cljfmt "1d8cdff6f3a6ef283cc5fc7f602cd09428641ff0"
+                               ;; let's not confuse things for testing and just use rewrite-cljc from below
+                               :exclusions [rewrite-cljc]]
                  ^:inline-dep [clj-commons/fs "1.5.0"]
-                 ^:inline-dep [rewrite-clj "0.6.1"]
+                 ^:inline-dep [rewrite-cljc "4eeac8576341cfd0b205e21745b8ca4063b70476"
+                               ;; let's exclude cljs from equation
+                               :exclusions [org.clojure/clojurescript]]
                  ^:inline-dep [version-clj "0.1.2"]]
+  :middleware [lein-git-down.plugin/inject-properties]
   :exclusions [org.clojure/clojure] ; see versions matrix below
 
   :deploy-repositories [["clojars" {:url "https://clojars.org/repo"
                                     :username :env/clojars_username
                                     :password :env/clojars_password
                                     :sign-releases false}]]
-  :plugins [[thomasa/mranderson "0.5.1"]]
+  :plugins [[thomasa/mranderson "0.5.1"]
+            [reifyhealth/lein-git-down "0.3.6"]]
   :mranderson {:project-prefix  "refactor-nrepl.inlined-deps"
                :expositions     [[org.clojure/tools.analyzer.jvm org.clojure/tools.analyzer]]
                :unresolved-tree false}
@@ -60,4 +66,8 @@
                                           with-debug-bindings [[:inner 0]]
                                           merge-meta [[:inner 0]]
                                           try-if-let [[:block 1]]}}}]}
-  :jvm-opts ["-Djava.net.preferIPv4Stack=true"])
+  :jvm-opts ["-Djava.net.preferIPv4Stack=true"]
+  :repositories [["public-github" {:url "git://github.com"}]]
+  :git-down {rewrite-cljc {:coordinates lread/rewrite-cljc-playground}
+             cljfmt {:coordinates lread/cljfmt
+                     :manifest-root "cljfmt"}})
